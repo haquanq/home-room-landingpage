@@ -1,0 +1,257 @@
+$Dark_Gray: hsl(0, 0%, 63%);
+$Very_Dark_Gray: hsl(0, 0%, 27%);
+
+#arrow {
+    position: relative;
+    background: $Very_Dark_Gray;
+    width: 40px; height: 1.5px;
+    transition: 150ms ease;
+}
+#arrow::after {
+    position: absolute;
+    display: block;
+    content: "";
+    right: -1px; top: -3px;
+    width: 8px; height: 1px;
+    background: black;
+    transform: rotate(45deg);
+    transition: 150ms ease;
+}
+#arrow::before {
+    position: absolute;
+    display: block;
+    content: "";
+    right: -1px; top: 3.5px;
+    width: 8px; height: 1px;
+    background: black;
+    transform: rotate(-45deg);
+    transition: 150ms ease;
+}
+
+.nav_menu {
+    display: none;
+    position: absolute; z-index: 7;
+    top: 45px; left: 35px;
+    cursor: pointer;
+    > span {
+        display: block;
+        width: 26px; height: 3px;
+        background: white;
+        margin: 5px 0;
+        transition: 200ms ease;
+    }
+}
+
+.nav_menu.open {
+   > span:nth-child(1) {
+       transform: rotate(45deg) translateY(11px);
+       background: $Dark_Gray;
+   }
+   > span:nth-child(2) {
+       opacity: 0;
+   } 
+   > span:nth-child(3) {
+    background: $Dark_Gray;
+    transform: rotate(-45deg) translateY(-11px);
+   }
+}
+
+#menu {
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    top: 0;
+    left: 0; right: 0;
+    height: 0;
+    background: white;
+    position: absolute; z-index: 6;
+    transition: 250ms ease-in-out;
+    > div {
+        margin-right: 5px;
+        opacity: 0;
+        transition: 300ms ease;
+        a { 
+            color: black;
+            font-size: 1em;
+            font-weight: 700;
+            margin-right: 25px;
+        }
+    }
+}
+
+#bg__blur {
+    display: none; opacity: 0;
+    position: absolute; z-index: 5;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    height: 120vh;
+    background: rgba(black, 0.5);
+    transition: 250ms ease;
+}
+
+.nav_container {
+    top: 40px; left: 60px;
+    height: 40px;
+    position: absolute; z-index: 4;
+    display: flex;
+    align-items: center;
+    & > img {
+        width: 60px;
+        margin: 0 30px 0 0;
+    }
+    & > ul {
+        height: 100%;
+        display: flex;
+        & > li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin: 0 0 0 30px;
+        }
+        a {
+            color: white;
+            font-size: 1.125em;
+            font-weight: 600;
+        }
+        a:hover + span{
+            opacity: 1;
+        }
+        span {
+            display: block; opacity: 0;
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 25%; right: 25%;
+            background: white;
+            width: 50%; height: 3px;
+            transition: 150ms ease-in-out;
+        }
+    }
+}
+
+.slide__btn {
+    display: flex;
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 160px; height: 80px;
+    background: black;
+    & > button {
+        width: 50%; height: 100%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: black;
+        transition: 150ms ease;
+    }
+}
+
+#overlay {
+    position: absolute; z-index: 3;
+    opacity: 0;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background: rgba(white, 0.2);
+    transition: 150ms ease;
+}
+
+@media (hover:hover) {
+    .slide__btn {
+        & > button:hover {
+            background: $Very_Dark_Gray;
+        }
+    }
+    .grid__layout__sec1 {
+        .shopnow_btn {
+            & > button:hover {
+                color: $Dark_Gray;
+            }
+            > button:hover + div > #arrow,
+            > button:hover + div > #arrow::after,
+            > button:hover + div > #arrow::before {
+                background: $Dark_Gray;
+            }
+        }
+    }
+    .nav_container {
+        & > ul {
+            a:hover + span{
+                opacity: 1;
+            }
+            span {
+                display: block; opacity: 0;
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 25%; right: 25%;
+                background: white;
+                width: 50%; height: 3px;
+                transition: 150ms ease-in-out;
+            }
+        }
+    }
+}
+
+.article {
+    &__title {
+        overflow-x: hidden;
+        height: 110px;
+        position: relative;
+        > div {
+            left: 0;
+            width: 800px; height: 100%;
+            position: absolute;
+            display: flex;
+            transition: 700ms ease-in-out;
+            > h1 {
+                position: absolute;
+                width: 100%;
+                color: black;
+                font-size: 3em;
+                font-weight: 600;
+                transition: 150ms ease;
+            }
+            > h1:nth-child(1) {
+                left: 0;
+            }
+            > h1:nth-child(2) {
+                left: 100%;
+            }
+            > h1:nth-child(3) {
+                left: 200%;
+            }
+        }
+    }
+    &__content {
+        overflow-x: hidden;
+        position: relative;
+        height: 132px;
+        > div {
+            left: 0;
+            width: 800px; height: 100%;
+            position: absolute;
+            display: flex;
+            transition: 750ms ease-in-out;
+            p {
+                position: absolute;
+                width: 41ch;
+                color: $Dark_Gray;
+                font-size: 1em;
+                font-weight: 600;
+                line-height: 1.7;
+            }
+            > p:nth-child(2) {
+                left: 0;
+            }
+            > p:nth-child(2) {
+                left: 100%;
+            }
+            > p:nth-child(3) {
+                left: 200%;
+            }
+        }
+    }
+}
+
